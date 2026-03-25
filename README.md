@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# AgenticAI Custom Keycloak Theme
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, custom-branded authentication theme built with **Keycloakify** and **React**. This repository manages the styling and UX for the AgenticAI login, registration, and account management screens.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Key Features
 
-## React Compiler
+- **Keycloakify Integration**: Bridges Keycloak's FreeMarker templates with modern React UI.
+- **Storybook-First Workflow**: Full UI development and testing independent of a running Keycloak server.
+- **Theming & Branding**: Consistent aesthetic with the main AgenticAI platform using Tailwind CSS v4 and Shadcn UI.
+- **Custom Pages**: Specialized login, registration, OTP, and password reset screens.
+- **Built-in Support**: Seamless OIDC support for frontend and backend redirect flows.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Keycloakify**: Core framework for React-based Keycloak themes.
+- **Storybook**: Component development and UI documentation.
+- **React 19 + Vite 8**: Modern development infrastructure.
+- **Tailwind CSS v4**: High-performance, token-based styling.
+- **Shadcn UI & Radix UI**: Accessible, pre-styled primitives.
+- **HugeIcons & Lucide**: Premium iconography.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📥 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js (v18 or higher)
+- A running Keycloak instance (for final deployment) or local Docker setup.
+
+### Installation
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Initialize Keycloakify extensions:
+   ```bash
+   npm run postinstall
+   ```
+
+### Development (Storybook)
+
+Develop and preview theme pages without Keycloak:
+```bash
+npm run storybook
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Production Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Package the theme for deployment to a Keycloak server:
+```bash
+npm run build-keycloak-theme
 ```
+
+The output will be generated in `dist_keycloak/`, which can then be mounted or copied to your Keycloak `themes/` directory.
+
+---
+
+## 🏗 Directory Structure
+
+- **`.storybook/`**: Configuration for theme visualization.
+- **`src/`**: React source code for the theme pages.
+- **`public/`**: Static assets (logos, icons, fonts).
+- **`dist_keycloak/`**: Generated build artifacts for the Keycloak server.
+
+---
+
+## 🔒 Security
+
+This theme is designed to securely capture and handle credentials during the OIDC flow, ensuring compliance with Keycloak's security protocols while providing a seamless, on-brand user experience.
