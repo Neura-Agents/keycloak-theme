@@ -32,6 +32,7 @@ import { useInitializeTemplate } from "./useInitializeTemplate";
 
 const APP_NAME = "Neura Agents";
 const APP_TAGLINE = "Build and deploy AI agents effortlessly.";
+const HOME_URL = import.meta.env.VITE_HOME_URL ?? "http://localhost:7999";
 
 export function Template(props: {
     displayInfo?: boolean;
@@ -113,7 +114,7 @@ export function Template(props: {
                 {/*  navigation */}
                 <div className="absolute top-4 inset-s-4 z-20 flex gap-2">
                     <Button type="button" variant="ghost" asChild>
-                        <a href="http://localhost:8080">
+                        <a href={HOME_URL}>
                             <HugeiconsIcon icon={ArrowLeft02Icon} size={18} className="mr-2" />
                             Home
                         </a>
