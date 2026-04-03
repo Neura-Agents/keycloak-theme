@@ -60,6 +60,11 @@ export function Template(props: {
 
     const APP_THEME = (kcContext as any).properties?.VITE_APP_THEME ?? "dark";
 
+    // Extract theme from URL if present (passed from main frontend)
+    const urlParams = new URLSearchParams(window.location.search);
+    const THEME_FROM_URL = urlParams.get('ui_theme') || (kcContext as any).queryParams?.ui_theme;
+    const ACTIVE_THEME = THEME_FROM_URL || APP_THEME;
+
     const { auth, url, message, isAppInitiatedAction } = kcContext;
 
     const { msg, msgStr } = useI18n();
@@ -74,7 +79,7 @@ export function Template(props: {
 
     useSetClassName({
         qualifiedName: "html",
-        className: APP_THEME
+        className: ACTIVE_THEME
     });
 
     useSetClassName({
@@ -125,7 +130,7 @@ export function Template(props: {
                 {/*  navigation */}
                 <div className="absolute top-4 inset-s-4 z-20 flex gap-2">
                     <Button type="button" variant="ghost" asChild>
-                        <a href={HOME_URL}>
+                        <a href={`${HOME_URL}${HOME_URL.includes('?') ? '&' : '?'}theme=${ACTIVE_THEME}`}>
                             <HugeiconsIcon icon={ArrowLeft02Icon} size={18} className="mr-2" />
                             Home
                         </a>

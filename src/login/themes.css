@@ -67,7 +67,7 @@
   --ring: var(--primary);
   --success: oklch(0.6 0.15 150);
   --warning: oklch(0.7 0.15 70);
-  --logo-url: url('./assets/images/wormLogo-black.svg');
+  --logo-url: url('./assets/images/wormLogo-white.svg');
   --header-bg: var(--background);
   --header-glass-border: var(--border);
 }
@@ -179,7 +179,7 @@
   --success: #22c55e;
   --warning: #f59e0b;
 
-  --logo-url: url('./assets/images/wormLogo-black.svg');
+  --logo-url: url('./assets/images/wormLogo-white.svg');
 
   --header-bg: #ffffff;
   --header-glass-border: #e4e7ec;
