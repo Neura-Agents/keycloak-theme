@@ -30,10 +30,6 @@ import { useKcContext } from "../../KcContext";
 import shape from "./../../assets/img/shape.svg";
 import { useInitializeTemplate } from "./useInitializeTemplate";
 
-const APP_NAME = "Neura Agents";
-const APP_TAGLINE = "Build and deploy AI agents effortlessly.";
-const HOME_URL = import.meta.env.VITE_HOME_URL ?? "http://localhost:7999";
-
 export function Template(props: {
     displayInfo?: boolean;
     displayMessage?: boolean;
@@ -58,6 +54,11 @@ export function Template(props: {
     } = props;
 
     const { kcContext } = useKcContext();
+    const APP_NAME = (kcContext as any).properties?.VITE_APP_NAME ?? "WormLabs";
+    const APP_TAGLINE = (kcContext as any).properties?.VITE_APP_TAGLINE ?? "Build and deploy AI agents effortlessly.";
+    const HOME_URL = (kcContext as any).properties?.VITE_HOME_URL ?? "http://localhost:7999";
+
+    const APP_THEME = (kcContext as any).properties?.VITE_APP_THEME ?? "dark";
 
     const { auth, url, message, isAppInitiatedAction } = kcContext;
 
@@ -68,12 +69,12 @@ export function Template(props: {
     useEffect(() => {
         document.title =
             documentTitle ??
-            msgStr("loginTitle", kcContext.realm.displayName || kcContext.realm.name);
-    }, []);
+            `${APP_NAME} | ${msgStr("loginTitle", kcContext.realm.displayName || kcContext.realm.name)}`;
+    }, [documentTitle, APP_NAME]);
 
     useSetClassName({
         qualifiedName: "html",
-        className: kcClsx("kcHtmlClass")
+        className: APP_THEME
     });
 
     useSetClassName({
@@ -97,10 +98,20 @@ export function Template(props: {
                     <div className="flex justify-center my-auto flex-col items-center max-w-xs">
                         <div className="mb-4 flex items-center gap-3">
                             <div
-                                className="h-12 w-12 bg-contain bg-no-repeat bg-center"
-                                style={{ backgroundImage: 'var(--logo-url)' }}
+                                className="h-16 w-64 transition-all duration-300"
+                                style={{ 
+                                    backgroundColor: 'var(--foreground)',
+                                    WebkitMaskImage: 'var(--logo-url)',
+                                    maskImage: 'var(--logo-url)',
+                                    WebkitMaskRepeat: 'no-repeat',
+                                    maskRepeat: 'no-repeat',
+                                    WebkitMaskSize: 'contain',
+                                    maskSize: 'contain',
+                                    WebkitMaskPosition: 'left',
+                                    maskPosition: 'left'
+                                }}
                             />
-                            <span className="text-foreground text-xl font-season-mix"> {APP_NAME}</span>
+                            {/* <span className="text-foreground text-xl font-season-mix"> {APP_NAME}</span> */}
                         </div>
 
                         <p className="text-center  text-muted-foreground ">
@@ -133,11 +144,21 @@ export function Template(props: {
                                     <div className="lg:hidden relative mt-4">
                                         <div className="flex flex-col items-center justify-center gap-0 mb-2">
                                             <div className="mb-2 flex items-center gap-3">
-                                                <div
-                                                    className="h-10 w-10 bg-contain bg-no-repeat bg-center"
-                                                    style={{ backgroundImage: 'var(--logo-url)' }}
-                                                />
-                                                <span className="text-xl font-season-mix"> {APP_NAME}</span>
+                                <div
+                                    className="h-16 w-64 transition-all duration-300"
+                                    style={{ 
+                                        backgroundColor: 'var(--foreground)',
+                                        WebkitMaskImage: 'var(--logo-url)',
+                                        maskImage: 'var(--logo-url)',
+                                        WebkitMaskRepeat: 'no-repeat',
+                                        maskRepeat: 'no-repeat',
+                                        WebkitMaskSize: 'contain',
+                                        maskSize: 'contain',
+                                        WebkitMaskPosition: 'left',
+                                        maskPosition: 'left'
+                                    }}
+                                />
+                                                {/* <span className="text-xl font-season-mix"> {APP_NAME}</span> */}
                                             </div>
                                             <p className="text-base text-muted-foreground text-center font-matter">
                                                 {APP_TAGLINE}

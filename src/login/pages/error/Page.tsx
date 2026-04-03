@@ -19,6 +19,7 @@ import { useI18n } from "../../i18n";
 
 export function Page() {
     const { kcContext } = useKcContext();
+    const HOME_URL = (kcContext as any).properties?.VITE_HOME_URL ?? "http://localhost:7999";
     assert(kcContext.pageId === "error.ftl");
 
     const { msg } = useI18n();
@@ -37,17 +38,15 @@ export function Page() {
                     </AlertDescription>
                 </Alert>
 
-                {!kcContext.skipLink &&
-                    kcContext.client !== undefined &&
-                    kcContext.client.baseUrl !== undefined && (
-                        <div className="flex justify-end">
-                            <Button type="button">
-                                <a id="backToApplication" href={kcContext.client.baseUrl}>
-                                    {msg("backToApplication")}
-                                </a>
-                            </Button>
-                        </div>
-                    )}
+                {!kcContext.skipLink && (
+                    <div className="flex justify-end">
+                        <Button type="button" asChild>
+                            <a id="backToApplication" href={HOME_URL}>
+                                {msg("backToApplication")}
+                            </a>
+                        </Button>
+                    </div>
+                )}
             </div>
         </Template>
     );
