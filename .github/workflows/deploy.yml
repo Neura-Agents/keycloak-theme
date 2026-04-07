@@ -32,8 +32,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/keycloak-server:latest
-            ghcr.io/${{ github.repository_owner }}/keycloak-server:${{ github.sha }}
+            ghcr.io/neura-agents/keycloak-server:latest
+            ghcr.io/neura-agents/keycloak-server:${{ github.sha }}
 
       - name: Trigger Coolify Deploy
         run: |
