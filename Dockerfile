@@ -1,5 +1,6 @@
 # Stage 1: Build the Theme (Node.js)
 FROM node:20-slim AS theme-builder
+RUN apt-get update && apt-get install -y default-jdk maven && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
 RUN npm ci --legacy-peer-deps
