@@ -1,9 +1,8 @@
 # Stage 1: Build the Theme (Node.js)
 FROM node:20-slim AS theme-builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --legacy-peer-deps
 COPY . .
+RUN npm ci --legacy-peer-deps
 RUN npm run build-keycloak-theme
 
 # Stage 2: Keycloak Server
