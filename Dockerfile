@@ -3,7 +3,7 @@ FROM node:20-slim AS theme-builder
 WORKDIR /app
 COPY . .
 RUN npm ci --legacy-peer-deps
-RUN npm run build-keycloak-theme
+RUN npx vite build && npx keycloakify build
 
 # Stage 2: Keycloak Server
 FROM quay.io/keycloak/keycloak:latest
